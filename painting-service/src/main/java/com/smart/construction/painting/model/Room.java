@@ -1,64 +1,35 @@
-package com.smart.construction.painting.entity;
+package com.smart.construction.painting.model;
 
-import com.smart.construction.common.entity.Auditable;
+public class Room {
 
-import java.io.Serializable;
-
-import javax.persistence.*;
-
-@Entity
-@Table(name = "room_detail")
-public class RoomEntity extends Auditable implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name="room_detail_seq")
-    private long id;
-
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="project_id")
-    private ProjectEntity project;
-
-    @Column(name = "height")
+    private Long id;
+    private String type;
     private Double height;
-
-    @Column(name = "width")
     private Double width;
-
-    @Column(name = "length")
     private Double length;
-
-    @Column(name = "closet_count")
-    private Integer closetCount;
-
-    @Column(name = "door_count")
     private Integer doorCount;
-
-    @Column(name = "mantle_count")
+    private Integer closetCount;
     private Integer mantleCount;
-
-    @Column(name = "column_count")
     private Integer columnCount;
-
-    @Column(name = "wall_size")
     private Double wallSize;
-
-    @Column(name = "ceiling_size")
     private Double ceilingSize;
-
-    @Column(name = "trim_size")
+    private Boolean trimWithCrown;
     private Double trimSize;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public ProjectEntity getProject() {
-        return project;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setProject(ProjectEntity project) {
-        this.project = project;
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public Double getHeight() {
@@ -85,20 +56,20 @@ public class RoomEntity extends Auditable implements Serializable {
         this.length = length;
     }
 
-    public Integer getClosetCount() {
-        return closetCount;
-    }
-
-    public void setClosetCount(Integer closetCount) {
-        this.closetCount = closetCount;
-    }
-
     public Integer getDoorCount() {
         return doorCount;
     }
 
     public void setDoorCount(Integer doorCount) {
         this.doorCount = doorCount;
+    }
+
+    public Integer getClosetCount() {
+        return closetCount;
+    }
+
+    public void setClosetCount(Integer closetCount) {
+        this.closetCount = closetCount;
     }
 
     public Integer getMantleCount() {
@@ -131,6 +102,14 @@ public class RoomEntity extends Auditable implements Serializable {
 
     public void setCeilingSize(Double ceilingSize) {
         this.ceilingSize = ceilingSize;
+    }
+
+    public Boolean getTrimWithCrown() {
+        return trimWithCrown;
+    }
+
+    public void setTrimWithCrown(Boolean trimWithCrown) {
+        this.trimWithCrown = trimWithCrown;
     }
 
     public Double getTrimSize() {

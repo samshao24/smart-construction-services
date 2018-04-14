@@ -1,9 +1,5 @@
 package com.smart.construction.painting.entity;
 
-import com.smart.construction.common.entity.AddressEntity;
-import com.smart.construction.common.entity.Auditable;
-import com.smart.construction.common.entity.PersonEntity;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;

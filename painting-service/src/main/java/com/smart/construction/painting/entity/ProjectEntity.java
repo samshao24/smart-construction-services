@@ -1,7 +1,5 @@
 package com.smart.construction.painting.entity;
 
-import com.smart.construction.common.entity.Auditable;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;

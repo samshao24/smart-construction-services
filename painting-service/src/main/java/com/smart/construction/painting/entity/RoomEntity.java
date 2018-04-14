@@ -1,7 +1,5 @@
 package com.smart.construction.painting.entity;
 
-import com.smart.construction.common.entity.Auditable;
-
 import java.io.Serializable;
 
 import javax.persistence.*;

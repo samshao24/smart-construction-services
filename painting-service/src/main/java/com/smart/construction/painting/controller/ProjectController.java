@@ -24,7 +24,7 @@ public class ProjectController {
 		return project;
 	}
 
-	@GetMapping(value="/project/all", produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value="/project/list", produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<Project> getAllProjects() {
 		return projectService.getAllProjects();
 	}

@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "room_detail")
-public class RoomEntity extends Auditable implements Serializable {
+public class RoomEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -46,6 +46,9 @@ public class RoomEntity extends Auditable implements Serializable {
 
     @Column(name = "trim_size")
     private Double trimSize;
+
+    @Column(name = "trim_with_crown_yn")
+    private boolean trimWithCrown;
 
     public long getId() {
         return id;
@@ -137,5 +140,13 @@ public class RoomEntity extends Auditable implements Serializable {
 
     public void setTrimSize(Double trimSize) {
         this.trimSize = trimSize;
+    }
+
+    public boolean isTrimWithCrown() {
+        return trimWithCrown;
+    }
+
+    public void setTrimWithCrown(boolean trimWithCrown) {
+        this.trimWithCrown = trimWithCrown;
     }
 }

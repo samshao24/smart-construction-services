@@ -2,8 +2,10 @@ package com.smart.construction.painting.service.impl;
 
 import com.smart.construction.common.exception.ServiceException;
 import com.smart.construction.painting.entity.ProjectEntity;
+import com.smart.construction.painting.entity.ProjectTypeEntity;
 import com.smart.construction.painting.mapper.PaintingMapper;
 import com.smart.construction.painting.model.Project;
+import com.smart.construction.painting.model.ProjectType;
 import com.smart.construction.painting.repo.ProjectRepository;
 import com.smart.construction.painting.service.ProjectService;
 import org.apache.commons.collections4.CollectionUtils;
@@ -34,10 +36,9 @@ public class ProjectServiceImpl implements ProjectService {
         List<Project> resultList = new ArrayList<>();
         List<ProjectEntity> projectList = (List<ProjectEntity>) projectRepository.findAll();
         if (CollectionUtils.isNotEmpty(projectList)) {
-            resultList = projectList
-                    .stream().map(project -> paintingMapper.map(project, Project.class)).
-                    distinct().collect(
-                    Collectors.toList());
+            projectList.forEach(projectEntity -> {
+                resultList.add(convertEntity(projectEntity));
+            });
         }
         return resultList;
     }
@@ -46,5 +47,17 @@ public class ProjectServiceImpl implements ProjectService {
     public void saveProject(Project project) throws ServiceException {
         ProjectEntity projectEntity = paintingMapper.map(project, ProjectEntity.class);
         projectRepository.save(projectEntity);
+    }
+
+    private Project convertEntity(ProjectEntity entity) {
+        Project project = new Project();
+        project.setId(entity.getId());
+        project.setStatus(entity.getStatus().getStatus());
+        ProjectTypeEntity typeEntity = entity.getType();
+        ProjectType type = new ProjectType();
+        type.setId(typeEntity.getId());
+        type.setType(typeEntity.getType());
+        project.setType(type);
+        return project;
     }
 }

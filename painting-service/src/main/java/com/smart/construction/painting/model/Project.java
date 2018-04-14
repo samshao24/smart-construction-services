@@ -6,7 +6,7 @@ import java.util.List;
 public class Project {
 
     private Long Id;
-    private String Type;
+    private ProjectType type;
     private LocalDate beginDate;
     private LocalDate endDate;
     private String status;
@@ -22,12 +22,12 @@ public class Project {
         Id = id;
     }
 
-    public String getType() {
-        return Type;
+    public ProjectType getType() {
+        return type;
     }
 
-    public void setType(String type) {
-        Type = type;
+    public void setType(ProjectType type) {
+        this.type = type;
     }
 
     public LocalDate getBeginDate() {

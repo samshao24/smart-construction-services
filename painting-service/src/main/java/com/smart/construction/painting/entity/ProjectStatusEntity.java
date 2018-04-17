@@ -7,8 +7,11 @@ import javax.persistence.*;
 public class ProjectStatusEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name="project_status_seq")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="project_status_seq")
+    @SequenceGenerator(
+            name="project_status_seq",
+            sequenceName="project_status_seq",
+            initialValue = 1000)
     private long id;
 
     @Column(name = "status")

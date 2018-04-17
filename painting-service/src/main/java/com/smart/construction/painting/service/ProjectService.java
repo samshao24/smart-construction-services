@@ -29,4 +29,11 @@ public interface ProjectService {
      */
     void saveProject(Project project) throws ServiceException;
 
+    /**
+     * Delete project by id
+     * @param id
+     * @throws ServiceException
+     */
+    void deleteProject(long id) throws ServiceException;
+
 }

@@ -13,8 +13,11 @@ import javax.persistence.Table;
 public class PersonEntity extends Auditable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name="person_seq")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="person_seq")
+    @SequenceGenerator(
+            name="person_seq",
+            sequenceName="person_seq",
+            initialValue = 1000)
     private long id;
 
     @Column(name = "given_name")

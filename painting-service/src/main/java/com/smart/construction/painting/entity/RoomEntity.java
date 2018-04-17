@@ -9,8 +9,11 @@ import javax.persistence.*;
 public class RoomEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name="room_detail_seq")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="room_seq")
+    @SequenceGenerator(
+            name="room_seq",
+            sequenceName="room_seq",
+            initialValue = 1000)
     private long id;
 
     @ManyToOne(fetch=FetchType.LAZY)

@@ -9,8 +9,11 @@ import java.util.List;
 public class ProjectEntity extends Auditable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name="project_seq")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="project_seq")
+    @SequenceGenerator(
+            name="project_seq",
+            sequenceName="project_seq",
+            initialValue = 1000)
     private long id;
 
     @Column(name = "name")
@@ -22,15 +25,15 @@ public class ProjectEntity extends Auditable {
     @Column(name = "end_date")
     private LocalDate endDate;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @JoinColumn(name = "customer_id")
     private CustomerEntity customer;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @JoinColumn(name = "type_id")
     private ProjectTypeEntity type;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     @JoinColumn(name = "status_id")
     private ProjectStatusEntity status;
 

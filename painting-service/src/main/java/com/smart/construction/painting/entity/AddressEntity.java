@@ -13,8 +13,11 @@ import javax.persistence.Table;
 public class AddressEntity extends Auditable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name="address_seq")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="address_seq")
+    @SequenceGenerator(
+            name="address_seq",
+            sequenceName="address_seq",
+            initialValue = 1000)
     private long id;
 
     @Column(name = "street_address_1")

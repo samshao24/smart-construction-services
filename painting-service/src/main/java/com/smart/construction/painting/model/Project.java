@@ -11,6 +11,7 @@ public class Project {
     private LocalDate endDate;
     private String status;
     private Long totalCost;
+    private Customer customer;
 
     private List<Room> roomList;
 
@@ -64,5 +65,13 @@ public class Project {
 
     public List<Room> getRoomList() {
         return roomList;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }

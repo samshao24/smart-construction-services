@@ -1,6 +1,7 @@
 package com.smart.construction.painting.entity;
 
 import javax.persistence.Column;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Auditable {
@@ -12,10 +13,10 @@ public class Auditable {
     private Long updatedBy;
 
     @Column(name = "created_date", nullable = false)
-    private Date createdDate;
+    private LocalDate createdDate;
 
     @Column(name = "updated_date")
-    private Date updatedDate;
+    private LocalDate updatedDate;
 
     public Long getCreatedBy() {
         return createdBy;
@@ -33,19 +34,19 @@ public class Auditable {
         this.updatedBy = updatedBy;
     }
 
-    public Date getCreatedDate() {
+    public LocalDate getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(Date createdDate) {
+    public void setCreatedDate(LocalDate createdDate) {
         this.createdDate = createdDate;
     }
 
-    public Date getUpdatedDate() {
+    public LocalDate getUpdatedDate() {
         return updatedDate;
     }
 
-    public void setUpdatedDate(Date updatedDate) {
+    public void setUpdatedDate(LocalDate updatedDate) {
         this.updatedDate = updatedDate;
     }
 }

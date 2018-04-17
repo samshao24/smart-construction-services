@@ -13,28 +13,34 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("project")
 public class ProjectController {
 
 	@Autowired
 	private ProjectService projectService;
 
-	@GetMapping(value="/project/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value="detail/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
 	public Project getProjectById(@PathVariable long id) {
 		Project project = projectService.getProjectById(id);
 		return project;
 	}
 
-	@GetMapping(value="/project/list", produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value="list", produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<Project> getAllProjects() {
 		return projectService.getAllProjects();
 	}
 
-	@GetMapping(value = "/project/{id}/rooms", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "{id}/rooms", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Room> getRoomsByProjectId(@PathVariable(value = "id") long projectId) {
 		return null;
 	}
 
-	@PostMapping(value = "/project/save", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@DeleteMapping(value = "delete/{id}")
+	public void deleteProject(@PathVariable(value = "id") long id) {
+		projectService.deleteProject(id);
+	}
+
+	@PostMapping(value = "save", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void saveProject(@RequestBody Project project) {
 		projectService.saveProject(project);
 	}

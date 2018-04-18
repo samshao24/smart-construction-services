@@ -60,12 +60,13 @@ public class ProjectServiceImpl implements ProjectService {
         LocalDate now = LocalDate.now();
         if (project != null) {
             Long projectId = project.getId();
-            ProjectEntity existing = projectRepository.findById(projectId).get();
-            if (existing == null) {
+            if (projectId != null) {
+                projectEntity = projectRepository.findById(projectId).get();
+            }
+            if (projectEntity == null) {
                 projectEntity = new ProjectEntity();
                 projectEntity.setCreatedDate(now);
             } else {
-                projectEntity = existing;
                 projectEntity.setUpdatedDate(now);
             }
             projectEntity.setBeginDate(project.getBeginDate());

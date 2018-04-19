@@ -60,7 +60,7 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public void saveAndUpdateRoom(Room room) {
+    public void saveRoom(Room room) {
         // RoomEntity roomEntity = paintingMapper.map(room, RoomEntity.class);
         RoomEntity roomEntity = convertModel(room);
         roomRepository.save(roomEntity);
@@ -89,7 +89,7 @@ public class RoomServiceImpl implements RoomService {
             Long projectId = room.getProjectId();
             ProjectEntity projectEntity = projectRepository.findById(projectId).get();
             roomEntity.setProject(projectEntity);
-            roomEntity.setType(room.getRoomType().getValue());
+            roomEntity.setType(room.getType());
             roomEntity.setHeight(room.getHeight());
             roomEntity.setWidth(room.getWidth());
             roomEntity.setLength(room.getLength());
@@ -109,7 +109,7 @@ public class RoomServiceImpl implements RoomService {
         Room room = new Room();
         room.setId(roomEntity.getId());
         room.setProjectId(roomEntity.getProject().getId());
-        room.setRoomType(RoomType.getByValue(roomEntity.getType()));
+        room.setType(roomEntity.getType());
         room.setWidth(roomEntity.getWidth());
         room.setHeight(roomEntity.getHeight());
         room.setLength(roomEntity.getLength());

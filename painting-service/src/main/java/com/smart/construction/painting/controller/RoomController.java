@@ -27,24 +27,24 @@ public class RoomController {
 		return project;
 	}
 
-	@GetMapping(value="/rooms/projectId/{projectId}",  produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value="list/projectId/{projectId}",  produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<Room> getRoomByProject(@PathVariable long projectId) {
 		List<Room> list = roomService.getRoomListByProjectId(projectId);
 		return list;
 	}
 	
-	@PostMapping(value="/room/saveOrUpdate")
+	@PostMapping(value="save")
 	public Room saveRoom(@RequestBody Room room) {
-		roomService.saveAndUpdateRoom(room);
+		roomService.saveRoom(room);
 		return room;
 	}
 	
-	@DeleteMapping(value="/room/delete/{id}")
+	@DeleteMapping(value="delete/{id}")
 	public void deleteRoom(@PathVariable long id){
 		roomService.removeRoom(id);
 	}
 
-	@PostMapping(value = "/room/calculate")
+	@PostMapping(value = "calculate")
 	public Room calculateRoomCost(@RequestBody Room room) {
 	    return roomService.calculate(room);
     }

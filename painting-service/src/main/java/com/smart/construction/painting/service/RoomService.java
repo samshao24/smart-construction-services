@@ -34,7 +34,7 @@ public interface RoomService {
      *
      * @return
      */
-    void saveAndUpdateRoom(Room room);
+    void saveRoom(Room room);
 
     /**
      *

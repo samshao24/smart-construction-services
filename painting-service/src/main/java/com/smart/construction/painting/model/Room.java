@@ -6,7 +6,7 @@ public class Room {
 
     private Long id;
     private Long projectId;
-    private RoomType roomType;
+    private String type;
     private Double height;
     private Double width;
     private Double length;
@@ -35,12 +35,12 @@ public class Room {
         this.projectId = projectId;
     }
 
-    public RoomType getRoomType() {
-        return roomType;
+    public String getType() {
+        return type;
     }
 
-    public void setRoomType(RoomType roomType) {
-        this.roomType = roomType;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public Double getHeight() {

@@ -7,8 +7,10 @@ import com.smart.construction.painting.model.Address;
 import com.smart.construction.painting.model.Customer;
 import com.smart.construction.painting.model.Project;
 import com.smart.construction.painting.model.ProjectType;
+import com.smart.construction.painting.model.Room;
 import com.smart.construction.painting.repo.ProjectRepository;
 import com.smart.construction.painting.service.ProjectService;
+import com.smart.construction.painting.service.RoomService;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,12 +26,18 @@ public class ProjectServiceImpl implements ProjectService {
     private ProjectRepository projectRepository;
 
     @Autowired
+    private RoomService roomService;
+
+    @Autowired
     private PaintingMapper paintingMapper;
 
     @Override
     public Project getProjectById(long id) throws ServiceException {
-        ProjectEntity project = projectRepository.findById(id).get();
-        return convertEntity(project);
+        ProjectEntity projectEntity = projectRepository.findById(id).get();
+        Project project = convertEntity(projectEntity);
+        List<Room> roomList = roomService.getRoomListByProjectId(id);
+        project.setRoomList(roomList);
+        return project;
     }
 
     @Override

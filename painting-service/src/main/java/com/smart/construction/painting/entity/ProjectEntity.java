@@ -37,7 +37,7 @@ public class ProjectEntity extends Auditable {
     @JoinColumn(name = "status_id")
     private ProjectStatusEntity status;
 
-    @OneToMany(mappedBy = "project", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
     private List<RoomEntity> roomList;
 
     public long getId() {

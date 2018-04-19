@@ -1,9 +1,12 @@
 package com.smart.construction.painting.model;
 
+import com.smart.construction.common.constant.RoomType;
+
 public class Room {
 
     private Long id;
-    private String type;
+    private Long projectId;
+    private RoomType roomType;
     private Double height;
     private Double width;
     private Double length;
@@ -11,9 +14,9 @@ public class Room {
     private Integer closetCount;
     private Integer mantleCount;
     private Integer columnCount;
+    private Boolean trimWithCrown;
     private Double wallSize;
     private Double ceilingSize;
-    private Boolean trimWithCrown;
     private Double trimSize;
 
     public Long getId() {
@@ -24,12 +27,20 @@ public class Room {
         this.id = id;
     }
 
-    public String getType() {
-        return type;
+    public Long getProjectId() {
+        return projectId;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setProjectId(Long projectId) {
+        this.projectId = projectId;
+    }
+
+    public RoomType getRoomType() {
+        return roomType;
+    }
+
+    public void setRoomType(RoomType roomType) {
+        this.roomType = roomType;
     }
 
     public Double getHeight() {

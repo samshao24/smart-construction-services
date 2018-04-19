@@ -74,4 +74,8 @@ public class Project {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
+
+    public void setRoomList(List<Room> roomList) {
+        this.roomList = roomList;
+    }
 }

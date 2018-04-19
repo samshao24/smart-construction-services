@@ -1,12 +1,14 @@
 package com.smart.construction.painting.entity;
 
+import org.springframework.stereotype.Component;
+
 import java.io.Serializable;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "room_detail")
-public class RoomEntity implements Serializable {
+public class RoomEntity extends Auditable implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="room_seq")
@@ -19,6 +21,9 @@ public class RoomEntity implements Serializable {
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="project_id")
     private ProjectEntity project;
+
+    @Column(name = "type")
+    private String type;
 
     @Column(name = "height")
     private Double height;
@@ -63,6 +68,14 @@ public class RoomEntity implements Serializable {
 
     public void setProject(ProjectEntity project) {
         this.project = project;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public Double getHeight() {

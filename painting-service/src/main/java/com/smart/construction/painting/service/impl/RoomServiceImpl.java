@@ -69,7 +69,13 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public Room calculate(Room room) {
         // TODO: Here need to implement the actual logic to get the cost of room painting.
-        return new Room();
+        Integer paintingCost = 999;
+        Integer laborCost = 1000;
+        Integer totalCost = paintingCost + laborCost;
+        room.setPaintingCost(paintingCost);
+        room.setLaborCost(laborCost);
+        room.setTotalCost(totalCost);
+        return room;
     }
 
     private RoomEntity convertModel(Room room) {

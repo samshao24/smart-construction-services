@@ -15,7 +15,8 @@ public class RoomEntity extends Auditable implements Serializable {
     @SequenceGenerator(
             name="room_seq",
             sequenceName="room_seq",
-            initialValue = 1000)
+            initialValue = 1000,
+            allocationSize = 1)
     private long id;
 
     @ManyToOne(fetch=FetchType.LAZY)
@@ -57,6 +58,9 @@ public class RoomEntity extends Auditable implements Serializable {
 
     @Column(name = "trim_with_crown_yn")
     private boolean trimWithCrown;
+
+    @OneToOne(mappedBy = "room", cascade = CascadeType.ALL)
+    private RoomExpenseEntity roomExpense;
 
     public long getId() {
         return id;
@@ -164,5 +168,13 @@ public class RoomEntity extends Auditable implements Serializable {
 
     public void setTrimWithCrown(boolean trimWithCrown) {
         this.trimWithCrown = trimWithCrown;
+    }
+
+    public RoomExpenseEntity getRoomExpense() {
+        return roomExpense;
+    }
+
+    public void setRoomExpense(RoomExpenseEntity roomExpense) {
+        this.roomExpense = roomExpense;
     }
 }

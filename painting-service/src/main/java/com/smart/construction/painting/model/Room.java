@@ -18,9 +18,7 @@ public class Room {
     private Double wallSize;
     private Double ceilingSize;
     private Double trimSize;
-    private Integer paintingCost;
-    private Integer laborCost;
-    private Integer totalCost;
+    private RoomExpense roomExpense;
 
     public Long getId() {
         return id;
@@ -134,27 +132,11 @@ public class Room {
         this.trimSize = trimSize;
     }
 
-    public Integer getPaintingCost() {
-        return paintingCost;
+    public RoomExpense getRoomExpense() {
+        return roomExpense;
     }
 
-    public void setPaintingCost(Integer paintingCost) {
-        this.paintingCost = paintingCost;
-    }
-
-    public Integer getLaborCost() {
-        return laborCost;
-    }
-
-    public void setLaborCost(Integer laborCost) {
-        this.laborCost = laborCost;
-    }
-
-    public Integer getTotalCost() {
-        return totalCost;
-    }
-
-    public void setTotalCost(Integer totalCost) {
-        this.totalCost = totalCost;
+    public void setRoomExpense(RoomExpense roomExpense) {
+        this.roomExpense = roomExpense;
     }
 }

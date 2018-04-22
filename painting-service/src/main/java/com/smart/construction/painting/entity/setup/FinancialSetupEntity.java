@@ -23,8 +23,8 @@ public class FinancialSetupEntity {
     @Column(name = "mantle_labor_per_hour")
     private Integer mantleLaborPerHour;
 
-    @Column(name = "ceiling_labor_per_hour")
-    private Integer ceilingLaborPerHour;
+    @Column(name = "column_labor_per_hour")
+    private Integer columnLaborPerHour;
 
     @Column(name = "profit_ratio")
     private Double profitRatio;
@@ -57,12 +57,12 @@ public class FinancialSetupEntity {
         this.mantleLaborPerHour = mantleLaborPerHour;
     }
 
-    public Integer getCeilingLaborPerHour() {
-        return ceilingLaborPerHour;
+    public Integer getColumnLaborPerHour() {
+        return columnLaborPerHour;
     }
 
-    public void setCeilingLaborPerHour(Integer ceilingLaborPerHour) {
-        this.ceilingLaborPerHour = ceilingLaborPerHour;
+    public void setColumnLaborPerHour(Integer columnLaborPerHour) {
+        this.columnLaborPerHour = columnLaborPerHour;
     }
 
     public Double getProfitRatio() {

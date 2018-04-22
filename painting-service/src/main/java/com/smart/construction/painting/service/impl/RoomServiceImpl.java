@@ -3,8 +3,10 @@ package com.smart.construction.painting.service.impl;
 import com.smart.construction.common.constant.RoomType;
 import com.smart.construction.painting.entity.ProjectEntity;
 import com.smart.construction.painting.entity.RoomEntity;
+import com.smart.construction.painting.entity.RoomExpenseEntity;
 import com.smart.construction.painting.mapper.PaintingMapper;
 import com.smart.construction.painting.model.Room;
+import com.smart.construction.painting.model.RoomExpense;
 import com.smart.construction.painting.repo.ProjectRepository;
 import com.smart.construction.painting.repo.RoomRepository;
 import com.smart.construction.painting.service.RoomService;
@@ -69,12 +71,14 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public Room calculate(Room room) {
         // TODO: Here need to implement the actual logic to get the cost of room painting.
-        Integer paintingCost = 999;
-        Integer laborCost = 1000;
-        Integer totalCost = paintingCost + laborCost;
-        room.setPaintingCost(paintingCost);
-        room.setLaborCost(laborCost);
-        room.setTotalCost(totalCost);
+
+        RoomExpense roomExpense = room.getRoomExpense();
+        if (roomExpense == null) {
+            roomExpense = new RoomExpense();
+        }
+        roomExpense.setMaterialExpense(1500.36);
+        roomExpense.setLaborExpense(13000.00);
+        roomExpense.setTotalExpense(14500.36);
         return room;
     }
 
@@ -107,11 +111,31 @@ public class RoomServiceImpl implements RoomService {
             roomEntity.setWallSize(room.getWallSize());
             roomEntity.setCeilingSize(room.getCeilingSize());
             roomEntity.setTrimSize(room.getTrimSize());
+
+            // Expense
+            RoomExpense expense = room.getRoomExpense();
+            if (expense != null) {
+                RoomExpenseEntity expenseEntity = roomEntity.getRoomExpense();
+                if (expenseEntity == null) {
+                    expenseEntity = new RoomExpenseEntity();
+                }
+                expenseEntity.setRoom(roomEntity);
+                expenseEntity.setColumnExpense(expense.getColumnExpense());
+                expenseEntity.setDoorExpense(expense.getDoorExpense());
+                expenseEntity.setMantleExpense(expense.getMantleExpense());
+                expenseEntity.setColumnExpense(expense.getColumnExpense());
+                expenseEntity.setWallExpense(expense.getWallExpense());
+                expenseEntity.setCeilingExpense(expense.getCeilingExpense());
+                expenseEntity.setMaterialExpense(expense.getMaterialExpense());
+                expenseEntity.setLaborExpense(expense.getLaborExpense());
+                expenseEntity.setTotalExpense(expense.getTotalExpense());
+            }
         }
         return roomEntity;
     }
 
     private Room convertEntity(RoomEntity roomEntity) {
+        // Detail
         Room room = new Room();
         room.setId(roomEntity.getId());
         room.setProjectId(roomEntity.getProject().getId());
@@ -127,6 +151,20 @@ public class RoomServiceImpl implements RoomService {
         room.setWallSize(roomEntity.getWallSize());
         room.setCeilingSize(roomEntity.getCeilingSize());
         room.setTrimSize(roomEntity.getTrimSize());
+        // Expense
+        RoomExpenseEntity expenseEntity = roomEntity.getRoomExpense();
+        if (expenseEntity != null) {
+            RoomExpense expense = new RoomExpense();
+            expense.setClosetExpense(expenseEntity.getClosetExpense());
+            expense.setDoorExpense(expenseEntity.getDoorExpense());
+            expense.setMantleExpense(expenseEntity.getMantleExpense());
+            expense.setColumnExpense(expenseEntity.getColumnExpense());
+            expense.setWallExpense(expenseEntity.getWallExpense());
+            expense.setCeilingExpense(expenseEntity.getCeilingExpense());
+            expense.setMaterialExpense(expenseEntity.getMaterialExpense());
+            expense.setLaborExpense(expenseEntity.getLaborExpense());
+            expense.setTotalExpense(expenseEntity.getTotalExpense());
+        }
         return room;
     }
 }

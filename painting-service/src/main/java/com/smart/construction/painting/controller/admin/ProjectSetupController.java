@@ -39,7 +39,7 @@ public class ProjectSetupController {
     }
 
     @PostMapping(value="/painting/financial/save",  produces= MediaType.APPLICATION_JSON_VALUE)
-    public void saveFinancialSetup(FinancialSetupEntity entity) {
+    public void saveFinancialSetup(@RequestBody FinancialSetupEntity entity) {
         projectSetupService.saveFinancialSetup(entity);
     }
 }

@@ -33,6 +33,11 @@ public class ProjectSetupController {
         projectSetupService.savePaintingMaterial(paintingMaterial);
     }
 
+    @DeleteMapping(value="/painting/material/delete/{id}",  produces= MediaType.APPLICATION_JSON_VALUE)
+    public void deletePaintingMaterial(@PathVariable(value = "id") Long id) {
+        projectSetupService.deletePaintingMaterial(id);
+    }
+
     @GetMapping(value="/painting/financial/setup",  produces= MediaType.APPLICATION_JSON_VALUE)
     public FinancialSetupEntity getFinancialSetup() {
         return projectSetupService.getFinancialSetup();

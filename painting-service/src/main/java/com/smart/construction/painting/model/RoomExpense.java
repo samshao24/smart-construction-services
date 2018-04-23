@@ -8,6 +8,7 @@ public class RoomExpense {
     private Double mantleExpense;
     private Double columnExpense;
     private Double wallExpense;
+    private Double trimExpense;
     private Double ceilingExpense;
     private Double materialExpense;
     private Double laborExpense;
@@ -59,6 +60,14 @@ public class RoomExpense {
 
     public void setWallExpense(Double wallExpense) {
         this.wallExpense = wallExpense;
+    }
+
+    public Double getTrimExpense() {
+        return trimExpense;
+    }
+
+    public void setTrimExpense(Double trimExpense) {
+        this.trimExpense = trimExpense;
     }
 
     public Double getCeilingExpense() {

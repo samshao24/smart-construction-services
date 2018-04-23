@@ -1,5 +1,7 @@
 package com.smart.construction.painting.entity;
 
+import com.smart.construction.painting.entity.setup.PaintingMaterialEntity;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -37,7 +39,11 @@ public class ProjectEntity extends Auditable {
     @JoinColumn(name = "status_id")
     private ProjectStatusEntity status;
 
-    @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "painting_material_id")
+    private PaintingMaterialEntity paintingMaterial;
+
+    @OneToMany(mappedBy = "project", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<RoomEntity> roomList;
 
     public long getId() {
@@ -90,6 +96,14 @@ public class ProjectEntity extends Auditable {
 
     public void setStatus(ProjectStatusEntity status) {
         this.status = status;
+    }
+
+    public PaintingMaterialEntity getPaintingMaterial() {
+        return paintingMaterial;
+    }
+
+    public void setPaintingMaterial(PaintingMaterialEntity paintingMaterial) {
+        this.paintingMaterial = paintingMaterial;
     }
 
     public List<RoomEntity> getRoomList() {

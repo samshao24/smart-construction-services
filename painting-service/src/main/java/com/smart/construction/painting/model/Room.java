@@ -1,12 +1,11 @@
 package com.smart.construction.painting.model;
 
-import com.smart.construction.common.constant.RoomType;
-
 public class Room {
 
     private Long id;
     private Long projectId;
     private String type;
+    private String typeDisplay;
     private Double height;
     private Double width;
     private Double length;
@@ -18,7 +17,7 @@ public class Room {
     private Double wallSize;
     private Double ceilingSize;
     private Double trimSize;
-    private RoomExpense roomExpense;
+    private RoomExpense expense;
 
     public Long getId() {
         return id;
@@ -42,6 +41,14 @@ public class Room {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getTypeDisplay() {
+        return typeDisplay;
+    }
+
+    public void setTypeDisplay(String typeDisplay) {
+        this.typeDisplay = typeDisplay;
     }
 
     public Double getHeight() {
@@ -132,11 +139,11 @@ public class Room {
         this.trimSize = trimSize;
     }
 
-    public RoomExpense getRoomExpense() {
-        return roomExpense;
+    public RoomExpense getExpense() {
+        return expense;
     }
 
-    public void setRoomExpense(RoomExpense roomExpense) {
-        this.roomExpense = roomExpense;
+    public void setExpense(RoomExpense expense) {
+        this.expense = expense;
     }
 }

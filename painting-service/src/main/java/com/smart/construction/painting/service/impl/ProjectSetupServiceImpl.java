@@ -72,8 +72,19 @@ public class ProjectSetupServiceImpl implements ProjectSetupService {
     }
 
     @Override
+    public PaintingMaterial getPaintingMaterialById(Long id) throws ServiceException {
+        PaintingMaterialEntity entity =  paintingMaterialRepository.findById(id).get();
+        return convertPaintingMaterialEntity(entity);
+    }
+
+    @Override
     public void savePaintingMaterial(PaintingMaterial paintingMaterial) throws ServiceException {
         paintingMaterialRepository.save(convertPaintingMaterial(paintingMaterial));
+    }
+
+    @Override
+    public void deletePaintingMaterial(Long id) throws ServiceException {
+        paintingMaterialRepository.deleteById(id);
     }
 
     private ProjectType convertEntity(ProjectTypeEntity entity) {

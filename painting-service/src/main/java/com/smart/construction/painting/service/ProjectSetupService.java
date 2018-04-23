@@ -42,11 +42,28 @@ public interface ProjectSetupService {
     List<PaintingMaterial> getPaintingMaterialList() throws ServiceException;
 
     /**
+     * Service to get Painting Material Setup by Id
+     *
+     * @param id
+     * @return
+     * @throws ServiceException
+     */
+    PaintingMaterial getPaintingMaterialById(Long id) throws ServiceException;
+
+    /**
      * Service to save painting material
      *
      * @param paintingMaterial
      * @throws ServiceException
      */
     void savePaintingMaterial(PaintingMaterial paintingMaterial) throws ServiceException;
+
+    /**
+     * Service to delete painting material
+     *
+     * @param id
+     * @throws ServiceException
+     */
+    void deletePaintingMaterial(Long id) throws ServiceException;
 
 }

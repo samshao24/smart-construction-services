@@ -46,6 +46,9 @@ public class RoomExpenseEntity extends Auditable {
     @Column(name = "ceiling_expense")
     private Double ceilingExpense;
 
+    @Column(name = "trim_expense")
+    private Double trimExpense;
+
     @Column(name = "material_expense")
     private Double materialExpense;
 
@@ -113,6 +116,14 @@ public class RoomExpenseEntity extends Auditable {
 
     public void setCeilingExpense(Double ceilingExpense) {
         this.ceilingExpense = ceilingExpense;
+    }
+
+    public Double getTrimExpense() {
+        return trimExpense;
+    }
+
+    public void setTrimExpense(Double trimExpense) {
+        this.trimExpense = trimExpense;
     }
 
     public Double getMaterialExpense() {

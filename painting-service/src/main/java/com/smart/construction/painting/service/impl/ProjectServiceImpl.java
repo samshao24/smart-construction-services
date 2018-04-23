@@ -2,14 +2,13 @@ package com.smart.construction.painting.service.impl;
 
 import com.smart.construction.common.exception.ServiceException;
 import com.smart.construction.painting.entity.*;
+import com.smart.construction.painting.entity.setup.PaintingMaterialEntity;
 import com.smart.construction.painting.mapper.PaintingMapper;
-import com.smart.construction.painting.model.Address;
-import com.smart.construction.painting.model.Customer;
-import com.smart.construction.painting.model.Project;
-import com.smart.construction.painting.model.ProjectType;
-import com.smart.construction.painting.model.Room;
+import com.smart.construction.painting.model.*;
+import com.smart.construction.painting.repo.PaintingMaterialRepository;
 import com.smart.construction.painting.repo.ProjectRepository;
 import com.smart.construction.painting.service.ProjectService;
+import com.smart.construction.painting.service.ProjectSetupService;
 import com.smart.construction.painting.service.RoomService;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +28,12 @@ public class ProjectServiceImpl implements ProjectService {
     private RoomService roomService;
 
     @Autowired
+    private ProjectSetupService projectSetupService;
+
+    @Autowired
+    private PaintingMaterialRepository paintingMaterialRepository;
+
+    @Autowired
     private PaintingMapper paintingMapper;
 
     @Override
@@ -36,6 +41,17 @@ public class ProjectServiceImpl implements ProjectService {
         ProjectEntity projectEntity = projectRepository.findById(id).get();
         Project project = convertEntity(projectEntity);
         List<Room> roomList = roomService.getRoomListByProjectId(id);
+        Double totalCost = 0.00;
+        for (Room room : roomList) {
+            RoomExpense roomExpense = room.getExpense();
+            if (roomExpense != null) {
+                Double roomTotalCost = roomExpense.getTotalExpense();
+                if (roomTotalCost != null) {
+                    totalCost += roomTotalCost;
+                }
+            }
+        }
+        project.setTotalCost(totalCost);
         project.setRoomList(roomList);
         return project;
     }
@@ -77,6 +93,12 @@ public class ProjectServiceImpl implements ProjectService {
             } else {
                 projectEntity.setUpdatedDate(now);
             }
+            Long paintingMaterialId = project.getPaintingMaterialId();
+            if (paintingMaterialId != null) {
+                PaintingMaterialEntity materialEntity = paintingMaterialRepository.findById(paintingMaterialId).get();
+                projectEntity.setPaintingMaterial(materialEntity);
+            }
+
             projectEntity.setBeginDate(project.getBeginDate());
             projectEntity.setEndDate(project.getEndDate());
             projectEntity.setCreatedDate(LocalDate.now());
@@ -130,6 +152,11 @@ public class ProjectServiceImpl implements ProjectService {
         Project project = new Project();
         if (entity != null) {
             project.setId(entity.getId());
+            PaintingMaterialEntity paintingMaterialEntity = entity.getPaintingMaterial();
+            if (paintingMaterialEntity != null) {
+                project.setPaintingMaterialId(paintingMaterialEntity.getId());
+                project.setPaintingMaterialDisplay(paintingMaterialEntity.getName());
+            }
             project.setBeginDate(entity.getBeginDate());
             LocalDate endDate = entity.getEndDate();
             if (endDate != null && endDate.isAfter(LocalDate.now())) {

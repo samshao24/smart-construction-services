@@ -22,7 +22,7 @@ public class RoomController {
 	private RoomService roomService;
 
 	@GetMapping(value="detail/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
-	public Room getProjectById(@PathVariable long id) {
+	public Room getRoomById(@PathVariable long id) {
 		Room project = roomService.getRoomById(id);
 		return project;
 	}

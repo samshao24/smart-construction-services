@@ -10,8 +10,10 @@ public class Project {
     private LocalDate beginDate;
     private LocalDate endDate;
     private String status;
-    private Long totalCost;
+    private Double totalCost;
     private Customer customer;
+    private Long paintingMaterialId;
+    private String paintingMaterialDisplay;
 
     private List<Room> roomList;
 
@@ -55,11 +57,11 @@ public class Project {
         this.status = status;
     }
 
-    public Long getTotalCost() {
+    public Double getTotalCost() {
         return totalCost;
     }
 
-    public void setTotalCost(Long totalCost) {
+    public void setTotalCost(Double totalCost) {
         this.totalCost = totalCost;
     }
 
@@ -77,5 +79,21 @@ public class Project {
 
     public void setRoomList(List<Room> roomList) {
         this.roomList = roomList;
+    }
+
+    public Long getPaintingMaterialId() {
+        return paintingMaterialId;
+    }
+
+    public void setPaintingMaterialId(Long paintingMaterialId) {
+        this.paintingMaterialId = paintingMaterialId;
+    }
+
+    public String getPaintingMaterialDisplay() {
+        return paintingMaterialDisplay;
+    }
+
+    public void setPaintingMaterialDisplay(String paintingMaterialDisplay) {
+        this.paintingMaterialDisplay = paintingMaterialDisplay;
     }
 }

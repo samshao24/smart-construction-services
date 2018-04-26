@@ -14,11 +14,4 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-	@Bean
-	public MapperFactory mapperFactory() {
-		MapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
-		return mapperFactory;
-	}
-
-
 }

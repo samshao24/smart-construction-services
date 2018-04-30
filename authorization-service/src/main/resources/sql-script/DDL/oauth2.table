@@ -1,10 +1,10 @@
-﻿CREATE TABLE development.authority (
+﻿CREATE TABLE authority (
   id        INTEGER,
   authority VARCHAR(255),
   PRIMARY KEY (id)
 );
 
-CREATE TABLE development.credentials (
+CREATE TABLE credentials (
   id       INTEGER,
   enabled  BOOLEAN      NOT NULL,
   name     VARCHAR(255) NOT NULL,
@@ -13,12 +13,12 @@ CREATE TABLE development.credentials (
   PRIMARY KEY (id)
 );
 
-CREATE TABLE development.credentials_authorities (
+CREATE TABLE credentials_authorities (
   credentials_id BIGINT NOT NULL,
   authorities_id BIGINT NOT NULL
 );
 
-CREATE TABLE development.oauth_client_details (
+CREATE TABLE oauth_client_details (
   client_id               VARCHAR(256) PRIMARY KEY,
   resource_ids            VARCHAR(256),
   client_secret           VARCHAR(256),
@@ -32,7 +32,7 @@ CREATE TABLE development.oauth_client_details (
   autoapprove             VARCHAR(256)
 );
 
-CREATE TABLE development.oauth_client_token (
+CREATE TABLE oauth_client_token (
   token_id          VARCHAR(256),
   token             BYTEA,
   authentication_id VARCHAR(256),
@@ -40,7 +40,7 @@ CREATE TABLE development.oauth_client_token (
   client_id         VARCHAR(256)
 );
 
-CREATE TABLE development.oauth_access_token (
+CREATE TABLE oauth_access_token (
   token_id          VARCHAR(256),
   token             BYTEA,
   authentication_id VARCHAR(256),
@@ -50,18 +50,18 @@ CREATE TABLE development.oauth_access_token (
   refresh_token     VARCHAR(256)
 );
 
-CREATE TABLE development.oauth_refresh_token (
+CREATE TABLE oauth_refresh_token (
   token_id       VARCHAR(256),
   token          BYTEA,
   authentication BYTEA
 );
 
-CREATE TABLE development.oauth_code (
+CREATE TABLE oauth_code (
   code           VARCHAR(256),
   authentication BYTEA
 );
 
-CREATE TABLE development.oauth_approvals (
+CREATE TABLE oauth_approvals (
   userid         VARCHAR(256),
   clientid       VARCHAR(256),
   scope          VARCHAR(256),

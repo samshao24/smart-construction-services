@@ -69,3 +69,11 @@ CREATE TABLE oauth_approvals (
   expiresat      TIMESTAMP,
   lastmodifiedat TIMESTAMP
 );
+
+CREATE TABLE users (
+    id BIGINT PRIMARY KEY,
+    username VARCHAR(128) UNIQUE,
+    password BYTEA,
+    enabled BOOL,
+);
+

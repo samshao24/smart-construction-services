@@ -73,7 +73,7 @@ CREATE TABLE oauth_approvals (
 CREATE TABLE users (
     id BIGINT PRIMARY KEY,
     username VARCHAR(128) UNIQUE,
-    password BYTEA,
-    enabled BOOL,
+    password VARCHAR(256),
+    enabled BOOL
 );
 
